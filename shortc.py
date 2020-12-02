@@ -1,7 +1,7 @@
 import sys
 import getopt
 
-import Execute
+from shortcuts.Execute import Execute
 
 
 def run():
@@ -27,7 +27,7 @@ def run():
     if len(option) == 1:
         option = option[0]
 
-    Execute.Execute(option, command).run()
+    Execute(option, command).run()
 
 
 if __name__ == '__main__':
