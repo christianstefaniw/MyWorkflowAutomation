@@ -1,14 +1,14 @@
 import sys
 import getopt
 
-from shortcuts.Execute import Execute
+from shortcuts.execute import Execute
 
 
 def run():
     fields = 'o:tdm:f'
-    longFields = ['open=', 'tcpip=', 'python=', 'cp=']
+    long_fields = ['open=', 'tcpip=', 'python=', 'cp=']
 
-    options, args = getopt.getopt(sys.argv[1:], fields, longFields)
+    options, args = getopt.getopt(sys.argv[1:], fields, long_fields)
 
     option = []
     command = []

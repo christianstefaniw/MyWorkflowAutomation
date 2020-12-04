@@ -10,7 +10,7 @@ class Execute:
         self.pycharm = 'C:/"Program Files"/JetBrains/"PyCharm 2020.2"/bin/pycharm.bat'
 
     @staticmethod
-    def helpMessage():
+    def help_message():
         return '''
             -t = connect device @ 192.168.1.115
             -d = disconnect attached devices
@@ -20,7 +20,7 @@ class Execute:
 
     def run(self):
         if self.command is None:
-            print(self.helpMessage())
+            print(self.help_message())
 
             return
 
@@ -36,19 +36,19 @@ class Execute:
         elif self.command == '-o' or self.command == '--open':
             self.open()
         elif self.command == '--python':
-            self.openPython()
+            self.open_python()
         elif '--cp' in self.command and '-m' in self.command:
-            self.commitAndPush()
+            self.commit_and_push()
         else:
-            print(self.helpMessage())
+            print(self.help_message())
 
     # add, commit and push to GitHub
-    def commitAndPush(self):
+    def commit_and_push(self):
 
-        projDir = self.opt[self.command.index('--cp')]
+        proj_dir = self.opt[self.command.index('--cp')]
         msg = '"{}"'.format(self.opt[self.command.index('-m')])
 
-        os.chdir(f"C:/Users/cpste/Desktop/Projects/{projDir}")
+        os.chdir(f"C:/Users/cpste/Desktop/Projects/{proj_dir}")
         os.system("git add .")
         os.system(f"git commit -m {msg}")
 
@@ -63,7 +63,7 @@ class Execute:
         os.system(f"{self.intelliJ} {self.projects}/{self.opt}")
 
     # open a project with PyCharm
-    def openPython(self):
+    def open_python(self):
         os.system(f"{self.pycharm} {self.projects}/{self.opt}")
 
     # start wireless debugging
