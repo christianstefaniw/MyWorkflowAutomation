@@ -54,14 +54,13 @@ class Execute:
 
         os.chdir(f"C:/Users/cpste/Desktop/Projects/{proj_dir}")
 
-        print(self.command)
-        if '--pull' in self.opt:
+        if '--pull' in self.command:
             os.system("git pull")
 
         os.system("git add .")
         os.system(f"git commit -m {msg}")
 
-        if '-f' in self.opt:
+        if '-f' in self.command:
             os.system("git push -f")
         else:
             os.system("git push")
