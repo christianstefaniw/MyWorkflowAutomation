@@ -12,10 +12,12 @@ class Execute:
     @staticmethod
     def help_message():
         return '''
-            -t = connect device @ 192.168.1.115
+            -c or --connect = connect device @ 192.168.1.115
             -d = disconnect attached devices
             -o or --open + PROJECTNAME = open project in /Projects/ with IntelliJ
             --python + PROJECTNAME = open project in /Projects/ with PyCharm
+            --cp + PROJECTNAME = add, commit, push a project, required -m flag
+            -m = commit message
             '''
 
     def run(self):
@@ -29,8 +31,8 @@ class Execute:
         self.switch()
 
     def switch(self):
-        if self.command == '-t' or self.command == '--tcpip':
-            self.tcpip()
+        if self.command == '-c' or self.command == '--connect':
+            self.connect()
         elif self.command == '-d':
             self.disconnect()
         elif self.command == '-o' or self.command == '--open':
@@ -68,7 +70,7 @@ class Execute:
 
     # start wireless debugging
     @staticmethod
-    def tcpip():
+    def connect():
         os.chdir("C:/Users/cpste/Desktop/platform-tools/")
         os.system("adb tcpip 5555")
         os.system("adb connect 192.168.1.115")
