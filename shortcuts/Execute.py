@@ -16,14 +16,16 @@ class Execute:
             -d = disconnect attached devices
             -o or --open + PROJECTNAME = open project in /Projects/ with IntelliJ
             --python + PROJECTNAME = open project in /Projects/ with PyCharm
-            --cp + PROJECTNAME = add, commit, push a project, required -m flag
-            -m = commit message
+            
+            --cp + PROJECTNAME = add, commit, push a project, requires -m flag
+                -m = commit message
+                --pull = pull
+                -f = force push
             '''
 
     def run(self):
         if self.command is None:
             print(self.help_message())
-
             return
 
         print("loading...")
@@ -33,7 +35,7 @@ class Execute:
     def switch(self):
         if self.command == '-c' or self.command == '--connect':
             self.connect()
-        elif self.command == '-d':
+        elif self.command == '-d' or self.command == '--disconnect':
             self.disconnect()
         elif self.command == '-o' or self.command == '--open':
             self.open()
@@ -51,12 +53,15 @@ class Execute:
         msg = '"{}"'.format(self.opt[self.command.index('-m')])
 
         os.chdir(f"C:/Users/cpste/Desktop/Projects/{proj_dir}")
+
+        if '--pull' in self.opt:
+            os.system("git pull")
+
         os.system("git add .")
         os.system(f"git commit -m {msg}")
 
         if '-f' in self.opt:
             os.system("git push -f")
-
         else:
             os.system("git push")
 
