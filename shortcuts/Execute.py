@@ -54,7 +54,7 @@ class Execute:
 
         os.chdir(f"C:/Users/cpste/Desktop/Projects/{proj_dir}")
 
-        print(self.opt)
+        print(self.command)
         if '--pull' in self.opt:
             os.system("git pull")
 
