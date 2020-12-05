@@ -48,7 +48,6 @@ class Execute:
 
     # add, commit and push to GitHub
     def commit_and_push(self):
-        print(self.command)
         proj_dir = self.opt[self.command.index('--cp')]
         msg = '"{}"'.format(self.opt[self.command.index('-m')])
 
