@@ -5,7 +5,7 @@ from shortcuts.execute import Execute
 
 
 def run():
-    fields = 'o:cdm:f'
+    fields = 'o:cdm:fs'
     long_fields = ['open=', 'connect', 'python=', 'cp=', 'disconnect', 'pull']
 
     options, args = getopt.getopt(sys.argv[1:], fields, long_fields)

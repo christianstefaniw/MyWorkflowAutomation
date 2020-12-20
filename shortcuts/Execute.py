@@ -5,9 +5,9 @@ class Execute:
     def __init__(self, opt, command):
         self.opt = opt
         self.command = command
-        self.projects = "C:/Users/cpste/Desktop/Projects"
-        self.intelliJ = 'C:/"Program Files"/JetBrains/"IntelliJ IDEA 2020.2"/bin/idea.bat'
-        self.pycharm = 'C:/"Program Files"/JetBrains/"PyCharm 2020.2"/bin/pycharm.bat'
+        self.PROJECTS = "C:/Users/cpste/Desktop/Projects"
+        self.INTELLIJ = 'C:/"Program Files"/JetBrains/"IntelliJ IDEA 2020.2"/bin/idea.bat'
+        self.PYCHARM = 'C:/"Program Files"/JetBrains/"PyCharm 2020.2"/bin/pycharm.bat'
 
     @staticmethod
     def help_message():
@@ -43,15 +43,21 @@ class Execute:
             self.open_python()
         elif '--cp' in self.command and '-m' in self.command:
             self.commit_and_push()
+        elif '-s' in self.command:
+            self.start_server()
         else:
             print(self.help_message())
+
+    def start_server(self):
+        os.chdir(f"{self.PROJECTS}/MarkSpace/mark_space_backend")
+        os.system("python manage.py runserver")
 
     # add, commit and push to GitHub
     def commit_and_push(self):
         proj_dir = self.opt[self.command.index('--cp')]
         msg = '"{}"'.format(self.opt[self.command.index('-m')])
 
-        os.chdir(f"C:/Users/cpste/Desktop/Projects/{proj_dir}")
+        os.chdir(f"{self.PROJECTS}/{proj_dir}")
 
         if '--pull' in self.command:
             os.system("git pull")
@@ -66,11 +72,11 @@ class Execute:
 
     # open a project with IntelliJ
     def open(self):
-        os.system(f"{self.intelliJ} {self.projects}/{self.opt}")
+        os.system(f"{self.INTELLIJ} {self.PROJECTS}/{self.opt}")
 
     # open a project with PyCharm
     def open_python(self):
-        os.system(f"{self.pycharm} {self.projects}/{self.opt}")
+        os.system(f"{self.PYCHARM} {self.PROJECTS}/{self.opt}")
 
     # start wireless debugging
     @staticmethod
